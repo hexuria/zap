@@ -70,6 +70,7 @@ impl SlashCommandRequest {
 
         if let Some(tool) = query
             .strip_prefix(commands::WAZ_NAME)
+            .or_else(|| query.strip_prefix(commands::TMP_NAME))
             .and_then(|query| query.strip_prefix(' '))
         {
             return Some(Self::GenerateSchema {
@@ -288,3 +289,52 @@ impl SlashCommandRequest {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_tmp_slash_command_parsing() {
+        // Test basic /tmp command
+        let req = SlashCommandRequest::from_query("/tmp cargo");
+        assert!(req.is_some());
+        if let Some(SlashCommandRequest::GenerateSchema { tool }) = req {
+            assert_eq!(tool, "cargo");
+        } else {
+            panic!("Expected GenerateSchema");
+        }
+
+        // Test basic /waz command
+        let req = SlashCommandRequest::from_query("/waz cargo");
+        assert!(req.is_some());
+        if let Some(SlashCommandRequest::GenerateSchema { tool }) = req {
+            assert_eq!(tool, "cargo");
+        } else {
+            panic!("Expected GenerateSchema");
+        }
+
+        // Test with multiple spaces
+        let req = SlashCommandRequest::from_query("/tmp   docker  ");
+        assert!(req.is_some());
+        if let Some(SlashCommandRequest::GenerateSchema { tool }) = req {
+            assert_eq!(tool, "docker");
+        } else {
+            panic!("Expected GenerateSchema");
+        }
+
+        // Test with empty argument (trailing space)
+        let req = SlashCommandRequest::from_query("/tmp ");
+        assert!(req.is_some());
+        if let Some(SlashCommandRequest::GenerateSchema { tool }) = req {
+            assert_eq!(tool, "");
+        } else {
+            panic!("Expected GenerateSchema");
+        }
+
+        // Test with no argument and no space
+        let req = SlashCommandRequest::from_query("/tmp");
+        assert!(req.is_none());
+    }
+}
+

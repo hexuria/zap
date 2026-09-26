@@ -818,7 +818,10 @@ impl Input {
                 });
             }
             command_that_just_sends_ai_request_with_prefix
-                if command.name == commands::INIT.name || command.name == commands::PLAN.name =>
+                if command.name == commands::INIT.name
+                    || command.name == commands::PLAN.name
+                    || command.name == commands::WAZ_NAME
+                    || command.name == commands::TMP_NAME =>
             {
                 // These slash commands just send AI requests with the slash command text as a
                 // prefix, and special handling is done downstream as an implementation detail

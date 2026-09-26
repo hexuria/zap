@@ -157,6 +157,17 @@ pub static WAZ: LazyLock<StaticCommand> = LazyLock::new(|| StaticCommand {
     argument: Some(Argument::required().with_hint_text(t_static!("slash-cmd-waz-hint"))),
 });
 
+pub const TMP_NAME: &str = "/tmp";
+
+pub static TMP: LazyLock<StaticCommand> = LazyLock::new(|| StaticCommand {
+    name: TMP_NAME,
+    description: t_static!("slash-cmd-tmp-desc"),
+    icon_path: "bundled/svg/stars-01.svg",
+    availability: Availability::AI_ENABLED,
+    auto_enter_ai_mode: true,
+    argument: Some(Argument::required().with_hint_text(t_static!("slash-cmd-tmp-hint"))),
+});
+
 pub static OPEN_PROJECT_RULES: LazyLock<StaticCommand> = LazyLock::new(|| StaticCommand {
     name: "/open-project-rules",
     description: t_static!("slash-cmd-open-project-rules-desc"),
@@ -440,6 +451,7 @@ fn all_commands() -> Vec<StaticCommand> {
         ADD_RULE.clone(),
         INIT.clone(),
         WAZ.clone(),
+        TMP.clone(),
         OPEN_PROJECT_RULES.clone(),
         OPEN_MCP_SERVERS.clone(),
         OPEN_RULES.clone(),
