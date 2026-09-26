@@ -85,3 +85,6 @@ docs/openwarp-cloud-removal-plan.md
 
 # Local corepack shims (symlinks into the developer machine)
 /crates/command-signatures-v2/js/bin/
+
+# Windows debug symbols (LFS content was never available)
+*.pdb
