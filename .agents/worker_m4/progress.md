@@ -1,12 +1,13 @@
 # Progress Tracker
 
-Last visited: 2026-05-30T15:04:50Z
+Last visited: 2026-06-03T05:49:00Z
 
 - [x] Initialized original_prompt.md and BRIEFING.md
-- [x] Read Explorer m1_3 handoff and findings
-- [x] View input.rs code to understand target implementation
-- [x] Apply fixes A, B, and C
-- [x] Write and append test case in input_test.rs
-- [x] Refined test case to cycle forward twice and cycle backward
-- [x] Verify build and tests (all 102 tests passed successfully)
+- [x] Understand and list existing files in `/Volumes/goldcoders/tmp/tmp-core`
+- [x] Config modification in `tmp-core/src/config.rs`
+- [x] Implement recursive help parser in `tmp-core/src/help.rs`
+- [x] Implement LLM rotation & clients in `tmp-core/src/llm.rs`
+- [x] Implement versioning & rollback in `tmp-core/src/versioning.rs`
+- [x] Register new modules in `tmp-core/src/lib.rs`
+- [x] Verify build and tests via `cargo check` and `cargo test`
 - [x] Write handoff.md
