@@ -70,6 +70,9 @@ __pycache__/
 # logo 生成脚本的依赖
 /scripts/node_modules/
 
+# Local prebuilt app kept for reinstall without compiling
+/dist/
+
 # Project notes
 .note/
 
@@ -79,3 +82,6 @@ docs/tmp.md
 official-website/
 docs/openwarp-cloud-removal-plan.md
 .omx/
+
+# Local corepack shims (symlinks into the developer machine)
+/crates/command-signatures-v2/js/bin/
